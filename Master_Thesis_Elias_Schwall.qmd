@@ -1,0 +1,132 @@
+---
+title: "Translation on Demand"
+subtitle: "Master thesis for acquisition of the degree of Master of Science (M.Sc.) in Computational Biology of the faculty of mathematics and natural sciences at the University of Cologne"
+author: "submitted by Elias Schwall"
+date: "today"
+fontsize: 12pt
+mainfont: "Helvetica"
+geometry: margin=2.5cm
+header-includes:
+- \usepackage{authblk}
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{setspace}
+- \setstretch{1.5}
+- \pagenumbering{gobble}
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyhf{}
+- \fancyfoot[R]{\thepage}
+format: 
+  pdf:
+    documentclass: article
+    classoption: "12pt"
+    link-citations: true
+---
+
+\textbf{Reviewers}: \newline Prof. Dr. Andreas Beyer \newline Prof. Dr. Achim Tresch
+
+\textbf{Supervised by}: \newline Luke Brandwood
+
+\vspace*{\fill}
+\vspace*{-2cm}  
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{CECAD_logo.jpg}
+    \end{minipage}\hfill
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Uni_Köln_Logo.png}
+    \end{minipage}
+\end{figure}
+
+\vspace*{\fill} 
+
+\newpage
+
+\pagenumbering{Roman} 
+
+# Declaration of originality {.unlisted .unnumbered}
+I hereby declare that this thesis is my own work and that no other sources and tools than stated were used.\newline
+
+\vspace*{\fill} 
+
+Cologne, \today \hspace*{\fill} Elias Schwall
+
+\newpage
+
+# Acknowledgement {.unlisted .unnumbered}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+# Abstract
+
+
+\newpage
+
+# Introduction
+
+## Embryonic stem cells
+
+## Translation on demand
+
+## Translation on demand as a develompental mechanism 
+
+## 2i Condition for maintaining naive pluripotency
+
+## Aim of this study 
+
+# Methods and tools
+
+## Data overview and processing 
+
+## Translation on demand metrics
+
+## RNA-Seq
+
+## Proteomics 
+
+## Ribo-Seq
+
+## Gene Overrepresentation Analysis 
+
+## Gene set enrichment analysis 
+
+## Motif enrichment 
+
+## Software 
+
+# Results
+
+## Early developement is shaped by ToD 
+
+## Gene overrepresentation analysis reveals time dependent pathway regulation of developmental terms
+
+## ToD candidates regulate gene expression as transcription factors 
+
+## ToD is influenced by RNA binding proteins 
+
+## GSEA reveals 
+
+## Riboseq reveals 
+
+# Discussion 
+
+# Conclusion
+
+# References
+
+# Appendices
+
+## Supplementary figures 
+
+## Supplementary tables 
+
+## Code and Data availability 
