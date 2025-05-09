@@ -11,6 +11,7 @@ header-includes:
 - \usepackage[fontsize=12pt]{scrextend}
 - \usepackage{setspace}
 - \setstretch{1.5}
+- \usepackage{graphicx}
 - \pagenumbering{gobble}
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
@@ -21,11 +22,16 @@ format:
     documentclass: article
     classoption: "12pt"
     link-citations: true
+bibliography: Master_Thesis.bib
 ---
 
-\textbf{Reviewers}: \newline Prof. Dr. Andreas Beyer \newline Prof. Dr. Achim Tresch
+```{=latex}
+\textbf{Reviewers}: \newline
+Prof. Dr. Andreas Beyer \newline
+Prof. Dr. Achim Tresch
 
-\textbf{Supervised by}: \newline Luke Brandwood
+\textbf{Supervised by}: \newline
+Luke Brandwood
 
 \vspace*{\fill}
 \vspace*{-2cm}  
@@ -41,22 +47,23 @@ format:
     \end{minipage}
 \end{figure}
 
-\vspace*{\fill} 
+\vspace*{\fill}
 
 \newpage
 
-\pagenumbering{Roman} 
+\pagenumbering{Roman}
 
-# Declaration of originality {.unlisted .unnumbered}
+\section*{Declaration of originality}
+
 I hereby declare that this thesis is my own work and that no other sources and tools than stated were used.\newline
 
-\vspace*{\fill} 
+\vspace*{\fill}
 
 Cologne, \today \hspace*{\fill} Elias Schwall
 
 \newpage
 
-# Acknowledgement {.unlisted .unnumbered}
+\section*{Acknowledgement}
 
 \newpage
 
@@ -66,67 +73,88 @@ Cologne, \today \hspace*{\fill} Elias Schwall
 
 \setcounter{page}{1}
 \pagenumbering{arabic}
-# Abstract
+```
 
+# Abstract
 
 \newpage
 
 # Introduction
 
-## Embryonic stem cells
+## Mouse embryonic stem cells
+
+Mouse embryonic stem cells (mESCs) are notable for their self-renewal capabilities and pluripotency, allowing them to differentiate into any cell type from the three germ layers. While this differentiation process is limited in vivo, pluripotent stem cells (PSCs) cultivated in vitro can self-renew indefinitely under specific culture conditions [@nicholsNaivePrimedPluripotent2009]. One such condition is the 2i+LIF (two inhibitors with leukemia inhibitory factor) medium, which maintains the naive pluripotent state of ESCs, closely mimicking the inner cell mass of pre-implantation mouse embryos.
 
 ## Translation on demand
 
-## Translation on demand as a develompental mechanism 
+## Translation on demand as a develompental mechanism
 
 ## 2i Condition for maintaining naive pluripotency
 
-## Aim of this study 
+## Aim of this study
 
 # Methods and tools
 
-## Data overview and processing 
+## Data overview and processing
 
 ## Translation on demand metrics
 
 ## RNA-Seq
 
-## Proteomics 
+## Proteomics
 
 ## Ribo-Seq
 
-## Gene Overrepresentation Analysis 
+## Gene Overrepresentation Analysis
 
-## Gene set enrichment analysis 
+## Gene set enrichment analysis
 
-## Motif enrichment 
+## Motif enrichment
 
-## Software 
+## Software
 
 # Results
 
-## Early developement is shaped by ToD 
+## Early developement is shaped by ToD
 
 ## Gene overrepresentation analysis reveals time dependent pathway regulation of developmental terms
 
-## ToD candidates regulate gene expression as transcription factors 
+## ToD candidates regulate gene expression as transcription factors
 
-## ToD is influenced by RNA binding proteins 
+## ToD is influenced by RNA binding proteins
 
-## GSEA reveals 
+## GSEA reveals
 
-## Riboseq reveals 
+## Riboseq reveals
 
-# Discussion 
+# Discussion
 
 # Conclusion
 
+\newpage
+
 # References
+
+::: {#refs}
+:::
+
+\newpage
 
 # Appendices
 
-## Supplementary figures 
+## Supplementary figures
 
-## Supplementary tables 
+## Supplementary tables
 
-## Code and Data availability 
+## Code and Data availability
+
+\newpage
+
+## Abbreviations
+
+| Abbreviation | Definition                 |
+|--------------|----------------------------|
+| mESCs        | Mouse embryonic stem cells |
+| PSCs         | Pluripotent stem cells     |
+
+: List of abbreviations
