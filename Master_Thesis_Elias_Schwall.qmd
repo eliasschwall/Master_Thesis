@@ -90,7 +90,7 @@ Mouse embryonic stem cells (mESCs) are defined by their self-renewal capabilitie
 
 Since serum contains undefined factors that can induce differentiation, the 2i medium was developed to provide a defined, chemically controlled environment that preserves mESCs in the naive pluripotent state [@yingGroundStateEmbryonic2008]. The 2i medium relies on the synergy between two inhibitors, PD0325901 and CHIR99021, to sustain mESCs in an undifferentiated state. PD0325901, a MEK inhibitor, blocks the MEK/ERK signaling pathway, suppressing differentiation signals from FGF and ERK that would otherwise prompt mESCs to exit pluripotency (see @fig-2i). Meanwhile, CHIR99021, a GSK3α/β inhibitor, stabilizes β-catenin and activates Wnt/β-catenin signaling, promoting the expression of self-renewal genes and reinforcing pluripotency [@yingGroundStateEmbryonic2008]. Together, these inhibitors create a controlled environment that preserves mESCs in a ground state resembling the undifferentiated pre-implantation epiblast [@yingGroundStateEmbryonic2008]. Alongside leukemia inhibitory factor (LIF), which activates the JAK-STAT3 pathway to further inhibit differentiation, the 2i medium maintains mESCs in a naive pluripotent state, enabling them to retain full differentiation potential without lineage bias [@yingGroundStateEmbryonic2008]. \newline The removal of the 2i medium triggers the transition from the naive pluripotent state by reactivating the MEK/ERK and GSK3 pathways, allowing ERK signaling to promote differentiation and reducing Wnt signaling to enable lineage specification. This shift initiates a cascade of biological changes, including the downregulation of naive markers (such as Nanog and Esrrb) and upregulation of formative markers (such as Otx2), along with epigenetic remodeling, altered chromatin accessibility, and a metabolic shift from glycolysis to oxidative phosphorylation (see @fig-2i) [@wrayInhibitionGlycogenSynthase2011a].
 
-![**2i mechanism of stabilizing naive pluripotency** \newline The inhibition of Mek/Erk through 2i-dependent mechanisms prevents the phosphorylation of Erf and Cic, resulting in the stabilization of these factors within the nucleus. These transcriptional effectors may play a role in activating genes associated with naïve pluripotency while repressing those involved in primed/formative states. Cdk8/19i influences the phosphorylation of proteins that are part of the elongation and transcription machinery, including the super elongation complex (SEC), RNA polymerase II (RNPII), and Mediator (MED). This could lead to the rapid activation of genes regulated by super-enhancers, which include factors that stabilize the naïve state as well as certain factors from the primed/formative states that are also upregulated in response to Cdk8/19i. The activation of the naïve circuitry through 2i and Cdk8/19i may support the enhanced mitochondrial oxidative phosphorylation (OXPHOS) capacity of these cells. The degradation of Lin28a might alleviate its repressive effects on target mRNAs, leading to the upregulation of mitochondrial proteins among others. The balance between autophagy and protein synthesis may sustain the translation of these mitochondrial components. Additionally, the re-wiring of mitochondrial sources for one-carbon units may further support the translation of mitochondrial-encoded proteins. Furthermore, the increased availability of S-adenosylmethionine (SAM) levels, due to NNMT upregulation, combined with the impairment of DNA methylation caused by Uhrf1 degradation, contributes to the characteristic hypomethylated DNA state typical of 2i conditions. [@martinez-valDissectionTwoRoutes2021]](figures/2i_Figure.png){#fig-2i fig-pos="H"}
+![**2i mechanism of stabilizing naive pluripotency** \newline The inhibition of Mek/Erk through 2i-dependent mechanisms prevents the phosphorylation of Erf and Cic, resulting in the stabilization of these factors within the nucleus. These transcriptional effectors may play a role in activating genes associated with naïve pluripotency while repressing those involved in primed/formative states. Cdk8/19i influences the phosphorylation of proteins that are part of the elongation and transcription machinery, including the super elongation complex (SEC), RNA polymerase II (RNPII), and Mediator (MED). This could lead to the rapid activation of genes regulated by super-enhancers, which include factors that stabilize the naïve state as well as certain factors from the primed/formative states that are also upregulated in response to Cdk8/19i. The activation of the naïve circuitry through 2i and Cdk8/19i may support the enhanced mitochondrial oxidative phosphorylation (OXPHOS) capacity of these cells. The degradation of Lin28a might alleviate its repressive effects on target mRNAs, leading to the upregulation of mitochondrial proteins among others. The balance between autophagy and protein synthesis may sustain the translation of these mitochondrial components. Additionally, the re-wiring of mitochondrial sources for one-carbon units may further support the translation of mitochondrial-encoded proteins. Furthermore, the increased availability of S-adenosylmethionine (SAM) levels, due to NNMT upregulation, combined with the impairment of DNA methylation caused by Uhrf1 degradation, contributes to the characteristic hypomethylated DNA state typical of 2i conditions [@martinez-valDissectionTwoRoutes2021].](figures/2i_Figure.png){#fig-2i fig-pos="H"}
 
 ## ERK and mTOR signalling pathway and its effects on translation
 
@@ -112,29 +112,31 @@ In this project, we aim to identify ToD candidates from a multi-omic dataset, wh
 
 # Methods and tools
 
+## Experimental Approach and Workflow
+
+To research ToD, we exploit the fact that protein translation is largely inhibited under 2i conditions. By sampling mouse embryonic stem cells under 2i conditions and then periodically after 2i removal, we can take snapshots of the early changes in the transcriptome and proteome (see @fig-workflow). Upon 2i removal, we trigger the transition from the naive pluripotent state to the primed formative state. This allows us to detect changes in the translational behavior of genes aiding this transition. \newline We connect transcriptomic and proteomic dynamics by comparing their Log Fold Change (LFC) between time points. This way, we can compare qualitative trends for transcript and protein abundance rather than comparing them by count values. After identifying genes that are likely ToD-regulated, we assess their biological function and place them in the context of early development (see @fig-workflow).
+
+![**Experimental Approach and Workflow** Exemplary workflow for the Yang dataset. Proteomic and transcriptomic time courses were used to examine LFC changes at different time intervals. Filtering criteria were applied to determine if a specific gene is likely to be ToD regulated. ToD candidates were tested for functional enrichment and other annotations methods to determine their role in early development.](figures/Workflow.png){#fig-workflow fig-pos="H"}
+
 ## Data overview and processing
 
-The data for this project is comprised of three datasets with our main focus being the Yang Data, due to its higher temporal resolution in early time points and more consistent time course in the proteomic data (see @tbl-datasets). This dataset was sourced from Supplementary Table S2 (temporal proteomic data) and Supplementary Table S3 (temporal transcriptomic data) in the publication Multi-omic Profiling Reveals Dynamics of the Phased Progression of Pluripotency [@yangMultiomicProfilingReveals2019]. \newline The temporal proteomic data is in the form of Log2 Label-Free Quantification (LFQ) intensities and included the following time points: 0min, 30min, 1h, 6h, 12h, 24h, 36h, 48h, and 72h. Each time point had four biological replicates, which were also pooled. The temporal transcriptomic data consisted of non-normalized transcript counts and included the following time points: 0min, 1h, 6h, 12h, 24h, 36h, 48h, and 72h. Each time point had two biological replicates, which were averaged. Since the transcriptomic dataset did not include a 30min time point, this time point was removed from the proteomic data for further analysis (see @tbl-datasets). \newline To increase our accuracy in calling meaningful ToD candidate genes, we realigned the transciptomic data with the GRCm38 reference genome using STAR [@mudgeGENCODE2025Reference2025 ; @dobinSTARUltrafastUniversal2013].
+The data for this project is comprised of three datasets with our main focus being the Yang Data, due to its higher temporal resolution in early time points and more consistent time course in the proteomic data (see @tbl-datasets). This dataset was sourced from Supplementary Table S2 (temporal proteomic data) and Supplementary Table S3 (temporal transcriptomic data) in the publication Multi-omic Profiling Reveals Dynamics of the Phased Progression of Pluripotency [@yangMultiomicProfilingReveals2019]. \newline The temporal proteomic data is in the form of Log2 Label-Free Quantification (LFQ) intensities and included the following time points: 0min, 30min, 1h, 6h, 12h, 24h, 36h, 48h, and 72h. Each time point had four biological replicates, which were also pooled. The temporal transcriptomic data consisted of non-normalized transcript counts and included the following time points: 0min, 1h, 6h, 12h, 24h, 36h, 48h, and 72h. Each time point had two biological replicates, which were averaged. Since the transcriptomic dataset did not include a 30min time point, this time point was removed from the proteomic data for further analysis (see @tbl-datasets). \newline To increase our accuracy in calling meaningful ToD candidate genes, we realigned the transciptomic data with the GRCm38 reference genome using STAR [@mudgeGENCODE2025Reference2025; @dobinSTARUltrafastUniversal2013]. \newline The Leeb data has a temporal resolution from 0 to 32 hours with 4 hour intervals. Each time point has four biological replicates in the proteomic time course and no replicates in the transcriptomic time course (see @tbl-datasets). Gaussian Process Regression (GPR) was used to reduce noise in the transcriptomic time course data. \newline The Leeb MC data includes time course data for 0h, 4h and 8h for the purpose of calling ToD candidates. Additionally, it includes a time course with the same temporal resolution, where 2i conditions were kept while a medium change was still applied to the cells. Each time point has four biological replicates in the proteomic time course and three replicates in the transcriptomic time course (see @tbl-datasets).
 
 | Dataset | Temporal Resolution (h) | Replicates Transciptomics | Replicates Proteomics |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | Yang Data | 0, 1, 6, 12, 24, 36, 48, 72 | 2 | 4 |
-| Leeb Data | 0, 4, 8, 12, 24, 32 | 4 | 4 |
-| Leeb MC Data | 0, 4, 8 | 4 | 4 |
+| Leeb Data | 0, 4, 8, 12, 24, 32 | 1 | 4 |
+| Leeb MC Data (Medium Change) | 0, 4, 8 | 3 | 4 |
 
 : Datasets {#tbl-datasets}
 
-## Translation on demand metrics
+## Transcriptomic Data Normalization
 
-## RNA-Seq
-
-## Proteomics
-
-## Ribo-Seq
+## Calculation of Fold Changes and Ratios
 
 ## Gene Overrepresentation Analysis
 
-## Gene set enrichment analysis
+## Gene Set Enrichment Analysis
 
 ## Motif enrichment
 
@@ -144,17 +146,23 @@ The data for this project is comprised of three datasets with our main focus bei
 
 ## Detecting Translation on Demand Candidates
 
-## Early developement is shaped by ToD
+A hallmark of ToD regulation is a rapid increase in translation, while the rate of transcription stays stable. As a filtering criteria of ToD regulation, we selected only genes who showed RNA LFCs which stayed inside a stable range for each time interval. The stringency of this range depends on the biological question we want so answer with a specific list of ToD candidates. For example, for gene set enrichment it might make sense to broaden the range we define as stable to detect functional trends in a certain time interval which would not be detectable otherwise. If not stated otherwise we used a stable LFC RNA range from minus one to one. The next filtering step to determine if a gene might be subject to ToD regulation at a specific time interval was to filter for a Protein-to-RNA-LFC-Ratio (LFC-Ratio) of at least one to ensure a substantial increase in protein levels while maintaining a relatively stable RNA LFC, which filters for robust protein level changes independent of RNA fluctuations (see @fig-tod_filtering A). Again, this LFC-Ratio threshold depends on the biological context and needs to be adapted for the dataset in question. If not stated otherwise, we used a LFC-Ratio threshold of one. This filtering step results in an initial ToD candidate list generated with the Yang Data of 113 ToD candidates for the first time interval (0h to 1h), 103 for the second (1h to 6h) and 78 for the third (6h to 12h) etc. (see @fig-tod_filtering B). Corrected for time, the number of ToD candidates are 103, 17 and 13 for the first three time intervals respectivly (see @fig-tod_filtering B). This trend continues in later time intervals. The fact, that we detect more ToD candidates per unit of time in early time intervals might be due to the relevance of ToD regulation during these early develompental time intervals, because rapid protein systhesis of specific transcipts is needed at that time to initiate priming for differentiation. \newline To make the ToD candidate calling less subject to noise, we implemented a third filtering step. After a gene passes the LFC-Ratio threshold at a given time interval, we look at its protein LFC trajectory normalized for the first time point (0h) and see if the subsequent LFC value after the threshold passing is within a certain range defined by the time interval where it passed the LFC-Ratio threshold. For example, if a gene passed the LFC-Ratio threshold at the 0h to 1h time interval, we look in the protein LFC trajectory of that gene for 1h vs 0h and the next LFC value at 6h vs 0h. The LFC value at the 6h vs 0h time interval is only allowed to go down by 30% compared to the previous value at 1h vs 0h to eliminate genes that showed higher levels of noise in their protein LFC trajectory. After applying this filtering method, the number of ToD candidates for the first three time intervals were 61, 52, and 34 respectively (see @fig-tod_filtering C). The trend of having more ToD candidates when correcting for time in the early time intervals remained evident after applying the filtering step.
+
+![**Filtering for ToD candidates in the Yang Data** \newline (A) Distribution of LFC-Ratios at different time intervals. The dashed red line (LFC-Ratio of 1) shows the LFC-Ratio threshold a gene needs to pass. The dashed blue line (LFC-Ratio of -1) shows the opposite behaviore where we see a decreased protein expression. \newline (B) The barplot shows the number of ToD candidates at each time interval which passed the LFC-Ratio of one. The dark green bars show the absolute number of ToD candidates at a given time interval. The light green bars show the number of ToD candidates corrected for time. \newline (C) The barplot shows the number of ToD candidates at each time interval which passed the LFC-Ratio and which passed the third filtering step. The dark green bars show the absolute number of ToD candidates at a given time interval. The light green bars show the number of ToD candidates corrected for time.](figures/yang_tod_plot.svg){#fig-tod_filtering fig-pos="H"}
+
+## Early development is shaped by ToD candidates
+
+Upon examining the filtered ToD candidates across various temporal intervals, it is evident that these candidates include numerous genes crucial for early developmental processes. Specifically, during the initial interval from 0 to 1 hour, a significant proportion of the ToD candidates are associated with developmental functions. Notably, genes such as Agap1, Dnajc14, Emc7, Rab27a, Vti1a and Napb play roles in protein trafficking and vesicular transport. This observation suggests that protein trafficking is likely subjected to substantial demand during this initial period, coinciding with the onset of protein translation following the removal of the 2i condition. The increased load on protein trafficking mechanisms may reflect the cellular necessity to rapidly establish the proteomic landscape required for subsequent developmental stages.\newline Not suprisingly then, genes asscotiated with cytosceletal regulation like Cdc42bpa, Cep95, Plekhh1 and Stil are represented among ToD candidates in the first time interval. \newline Another group of genes, such as Celf2, Rex2, and Rsrp1, are involved in post-transcriptional regulation. Specifically, Celf2 encodes an RNA-binding protein that plays a critical role in regulating several post-transcriptional events. It is involved in pre-mRNA alternative splicing, mRNA translation, and stability. Celf2 mediates exon inclusion and/or exclusion in pre-mRNA, which is subject to tissue specific and developmentally regulated alternative splicing [@laddCELFFamilyRNA2001]. Lasty, another group of genes like Axin1, Csnk1g2, Jag1, Rap2c and Rgs19 contributes to regulatory networks that govern developmental processes. \newline ToD candidats contributing to the mentioned processes can also be found in subsequent time intervals, like the splicing factor Srsf11 or developmental regulators like Epha2 in time interval 1h to 6h among others (see @tbl-tod_yang). \newline These findings illustrate that the ToD candidates identified in the Yang dataset play a crucial role in facilitating the transition from the naive pluripotent state to the primed formative state. By contributing to essential processes such as protein trafficking, cytoskeletal regulation, post-transcriptional modification, and developmental signaling, these genes help orchestrate the complex molecular changes necessary for early development.
 
 ## Gene overrepresentation analysis reveals time dependent pathway regulation of developmental terms
+
+![**Gene overrepresentation analysis of early ToD candidates in Yang Data**](figures/ORA_plot.svg){#fig-ORA}
 
 ## ToD candidates regulate gene expression as transcription factors
 
 ## ToD is influenced by RNA binding proteins
 
 ## GSEA reveals
-
-## Riboseq reveals
 
 # Discussion
 
@@ -174,6 +182,17 @@ The data for this project is comprised of three datasets with our main focus bei
 ## Supplementary figures
 
 ## Supplementary tables
+
+| Time Interval | ToD candidate genes |
+|----|----|
+| 0h to 1h | Agap1, AI987944, Arhgap27, Axin1, Bbs5, Bbs9, Bex4, Btbd9, Cacna1a, Cbx6, Ccdc91, Ccnf, Cdc42bpa, Celf2, Cep95, Cgn, Csnk1g2, Csrnp2, Dcbld1, Dnajc14, Ebpl, Emc7, Enox2, Epha1, Fbxo9, Gba2, Gm5141, Gstp2, Hps4, Jag1, Napb, Nudt22, Odc1, Otud5, Plch1, Plekhh1, Rab27a, Rap2c, Rassf1, Rex2, Rgs19, Rhbdd3, Rnf187, Rsrp1, Slc38a2, Smim20, Sowahb, Stil, Taf11, Tex15, Tm2d3, Tmc6, Tmub2, Tnks, Tpst2, Vangl1, Vti1a, Zcchc2, Zfp850, Zik1, Zmym6 |
+| 1h to 6h | Agtrap, Alg3, Arhgap30, Avpi1, Bmpr1a, Capn3, Ccdc112, Cdh1, Coro2b, Ctdsp2, Dip2c, Epha2, Fam168b, Fat1, Fzr1, G2e3, Hsf2, Ifrd1, Irs2, Itgb3, Jak1, Kifc5b, Lgals8, Lin28b, Maml1, Mapkapk2, Micall1, Nfe2l2, Nptx2, Nr2c1, Pbx1, Pde8a, Pecam1, Rimklb, Rnf187, Rps6ka6, Slc19a2, Slc9a8, Sptb, Sqstm1, Srsf11, Ss18l2, Sulf1, Suv39h1, Syde2, Tex15, Tmem106b, Traip, Trim37, Trmt44, Zfand5, Zfp84 |
+| 6h to 12h | Adck2, Akap11, Bbx, Bcl2l11, Bex4, Birc2, Bnc2, Cenpj, Cers5, Cox7a2, Dzip1l, Eif1b, Enox2, Gpc4, Htra1, Kctd9, Klhdc10, Lnx2, Mpped2, Myo1d, Ormdl3, Parp9, Pnp, Rab40c, Rapgef2, Rbm44, Rims2, S100a10, Scd1, Sdc1, Slc25a31, Tmem17, Ttll4, Ube2q2 |
+| 12h to 24h | Alox15, Arhgef25, Bbc3, Camkv, Dapk1, Dgkd, Mapk6, Mief1, Mthfsd, Nuak2, Phf6, Pop5, Rab27a, Sh3kbp1, Slc35b1, Spop, Tktl2, Trim23, Zfp644 |
+| 24h to 36h | Actn3, Asnsd1, Capn3, Chchd7, Cnn2, Dgkd, Enpp3, Fam83b, Fbxw17, Foxp1, Gng3, Gstm4, Hmga1, Hmox1, Lnx2, Mrpl52, Nr2c1, Otub2, Peli1, Plce1, Pop5, Rsl24d1, Siva1, Spta1, Srgap1, Sumo3, Syne1, Zfp644 |
+| 36h to 48h | B4galt1, Clip2, Cthrc1, Fam222b, Flnc, Flywch1, Glt1d1, Irs2, Mlxip, Mutyh, Phykpl, Ptpn13, Rbm47, Rragd, Tmem245, Trio, Wwp1 |
+
+: ToD candidate genes from the Yang Data {#tbl-tod_yang}
 
 ## Code and Data availability
 
@@ -196,5 +215,8 @@ The data for this project is comprised of three datasets with our main focus bei
 | RNPs         | Ribonucleoproteins                          |
 | miRNAs       | mircoRNAs                                   |
 | UTR          | Untranslated region                         |
+| LFC          | Log Fold Change                             |
+| GPR          | Gaussian Process Regression                 |
+| LFC-Ratio    | Protein-to-RNA-LFC-Ratio                    |
 
 : List of abbreviations
