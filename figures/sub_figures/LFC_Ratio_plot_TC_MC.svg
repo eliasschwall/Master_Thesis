@@ -228,23 +228,22 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpNjAyLjAzfDg2OC4yN3w2MDMuODd8OTg3LjQ5)'>
-<polyline points='602.03,920.23 868.27,920.23 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='602.03,820.59 868.27,820.59 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='602.03,720.95 868.27,720.95 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='602.03,621.31 868.27,621.31 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='602.03,911.93 868.27,911.93 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='602.03,795.68 868.27,795.68 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='602.03,679.43 868.27,679.43 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='602.03,970.05 868.27,970.05 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='602.03,870.41 868.27,870.41 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='602.03,770.77 868.27,770.77 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='602.03,671.13 868.27,671.13 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='602.03,853.80 868.27,853.80 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='602.03,737.56 868.27,737.56 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='602.03,621.31 868.27,621.31 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='735.15,987.49 735.15,603.87 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<rect x='635.31' y='636.25' width='99.84' height='333.79' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #006400;' />
-<rect x='735.15' y='886.60' width='99.84' height='83.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #90EE90;' />
+<rect x='635.31' y='635.26' width='99.84' height='334.79' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #006400;' />
+<rect x='735.15' y='886.35' width='99.84' height='83.70' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #90EE90;' />
 </g>
 <g clip-path='url(#cpMC4wMHwxMDgwLjAwfDAuMDB8MTA4MC4wMA==)'>
 <text x='597.10' y='975.42' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='8.34px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='597.10' y='875.78' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.03px' lengthAdjust='spacingAndGlyphs'>100</text>
-<text x='597.10' y='776.14' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.03px' lengthAdjust='spacingAndGlyphs'>200</text>
-<text x='597.10' y='676.50' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.03px' lengthAdjust='spacingAndGlyphs'>300</text>
+<text x='597.10' y='859.17' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.03px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='597.10' y='742.93' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.03px' lengthAdjust='spacingAndGlyphs'>200</text>
+<text x='597.10' y='626.68' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='25.03px' lengthAdjust='spacingAndGlyphs'>300</text>
 <text transform='translate(742.75,1000.01) rotate(-45)' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Arial";' textLength='54.23px' lengthAdjust='spacingAndGlyphs'>0h to 4h</text>
 <text transform='translate(566.17,795.68) rotate(-90)' text-anchor='middle' style='font-size: 15.00px; font-family: "Arial";' textLength='106.73px' lengthAdjust='spacingAndGlyphs'>ToD Candidates</text>
 <rect x='885.42' y='779.11' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #006400;' />
