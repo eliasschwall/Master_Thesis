@@ -1,0 +1,20 @@
+.reveal .slides section:first-of-type {
+  background-image: url(Uni_Köln_Logo.png), url(CECAD_logo.jpg);
+  background-repeat: no-repeat;
+  background-position: left bottom, right bottom; /* Position images at the bottom corners */
+  background-size: 300px, 300px;
+  padding-bottom: 100px; /* Optional padding for content spacing */
+}
+
+.reveal .slide-logo {
+  z-index: -999 !important;
+}
+
+.reveal .slide-number > a[href*='title-slide'] {
+  display: none;
+}
+
+
+
+
+

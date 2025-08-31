@@ -1,0 +1,412 @@
+---
+title: "Translation on Demand as a post-transcriptional regulation mechanism of embryonic stem cell differentiation"
+subtitle: "Master Thesis Defense"
+author: "Elias Schwall"
+loop: true
+date: today
+logo: CECAD_logo.jpg
+css: style.css
+format: 
+  revealjs:
+    slide-number: true
+include-in-header:
+  - text: |
+      <style>
+      #title-slide .title {
+        font-size: 1.5em;
+      }
+      </style>
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c/t' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
+---
+
+
+
+## What is Translation on Demand (ToD)? {.smaller}
+
+:::::: columns
+:::: {.column width="60%" .incremental}
+::: callout-note
+# ToD
+
+is described as a **selective** and **rapid** protein synthesis for specific mRNAs **without increased mRNA levels**
+:::
+
+-   quick cellular responses during transitions, stresses and signaling stumuli
+-   **Neurons:** Local translation at active synapses
+-   **Early Embryos:** Stored maternal mRNAs are activated after fertilization
+-   **Stress Response:** Rapid synthesis of stress proteins (e.g. heat shock proteins) when needed
+::::
+
+::: {.column width="40%"}
+![](figures/defense_specific/Translation_on_Demand_Info_graphic.png){height="600"}
+:::
+::::::
+
+## Why should we care?
+
+:::{.r-stack}
+
+:::{.fragment .fade-in}
+:::{.fragment .fade-out}
+::: callout-tip
+## Transcript-Protein Relationship
+RNA levels can not fully explain protein abundance for many genes
+:::
+
+![](figures/defense_specific/Transcript_RNA_relation.png)
+:::
+:::
+
+:::{.fragment .fade-in .incremental}
+::: callout-tip
+## Mouse vs Human Development
+- mESCs differentiate/develop much faster than hESCs 
+- maybe ToD is a key mechanism that allows this speed 
+- e.g. enabling the upregulation of key genes to switch gene regulatory networks quickly
+:::
+
+:::
+:::
+
+
+## [ToD may be a key regularoty machanism during development]{.r-fit-text}
+
+:::{.r-stack}
+![edited from Strell et al. 2022](figures/defense_specific/ESCs_1.png){width=90%}
+
+![edited from Strell et al. 2022](figures/defense_specific/ESCs.png){.fragment width=90%}
+:::
+
+
+## How are we studying ToD? - 2i Media {.smaller}
+
+::::: columns
+:::: {.column width="60%"}
+
+::: {.fragment}
+::: callout-caution
+## <span style="color: green">GSK3 Inhibitor (CHIR99021)</span>
+- Inhibits GSK3 to stabilize β-catenin, promoting Wnt signaling
+- Supports pluripotency and helps prevent differentiation
+:::
+:::
+
+![Fabian Titz-Teixeira PhD Thesis](figures/defense_specific/2i_media.png)
+::::
+ 
+:::: {.column width="40%"}
+
+::: {.fragment}
+::: callout-caution
+## <span style="color: orange">MEK Inhibitor (PD0325901)</span>
+
+- Blocks the ERK pathway to decrease differentiation signalling
+:::
+:::
+
+::: {.fragment}
+::: callout-tip
+## The basic idea
+Remove 2i → Perform –omics over a timecourse → Analyze changes in genes and their products
+:::
+:::
+
+::::
+
+:::::
+
+## Project Goals
+
+::: {layout-nrow=2}
+::: callout-tip
+# [1] Identifying ToD regulated genes
+Framework for filtering ToD candidates by comparing transcriptome and proteome layers
+:::
+
+::: {.fragment}
+::: callout-caution
+# [2] What processes are subject to ToD?
+Define gene sets / Functional enrichment and annotation 
+:::
+:::
+
+::: {.fragment}
+::: callout-caution
+# [3] Why are these processes ToD-regulated?
+Are those processes critical for transitioning out of the naive state?
+:::
+:::
+
+::: {.fragment}
+::: callout-caution
+# [4] How is ToD facilitated by cells?
+What are the mechanisms enabling ToD? E.g. regulatory elements in 5' UTRs, 3' UTRs, RNA binding proteins, etc.
+:::
+:::
+::: 
+
+## [Experimental Approach, Datasets and Workflow]{.r-fit-text}
+
+::::: columns
+:::: {.column width="80%"}
+![](figures/defense_specific/Master_Thesis_Project_Overview.png)
+:::: 
+:::: {.column width="20%"}
+
+:::: 
+:::::
+
+:::{.fragment}
+![](figures/defense_specific/ToDcallR_hex.png){.absolute bottom=150 right=-70 width="380" height="300"}
+:::
+
+## [How can we detect ToD candidates?]{.r-fit-text}{.smaller}
+
+::: callout-note
+## Filter for stable transcripts
+$$ -R_s \leq \text{LFC}_{\text{between time points}} \leq R_s$$
+:::
+
+::::: columns
+:::: {.column width="50%"}
+
+::: {.fragment fragment-index=1}
+![](figures/defense_specific/stable_range.png){width=70%}
+:::
+
+::::
+:::: {.column width="50%"}
+
+::: {.fragment fragment-index=2}
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "|5"
+DESeq2::results(
+      ToDcall@dds,
+      contrast = contrasts[[comparison]],
+      lfcThreshold = stable_transcript_range,
+      altHypothesis = "lessAbs"
+)
+```
+:::
+::::
+::::: 
+
+
+
+
+## [How can we detect ToD candidates?]{.r-fit-text}{.smaller}
+
+
+::: callout-note
+## Calculate the LFC ratio
+$$\text{(1) LFC-Ratio} = \text{logFC}_{\text{between time points protein}} - \text{logFC}_{\text{between time points RNA}}$$
+$$\text{(2) LFC-Ratio}\geq \text{ToD-threshold}$$
+:::
+
+
+:::{.fragment}
+![](figures/defense_specific/yang_ratio_plot.svg)
+:::
+
+## [How can we detect ToD candidates?]{.r-fit-text}{.smaller}
+
+::: callout-note
+## Look at protein trajectory
+$$\text{logFC}_{\text{protein against 0h after ToD call}}\geq \text{logFC}_{\text{protein against 0h during ToD call}} \times (1-R_d)$$
+:::
+
+:::{.fragment}
+![](figures/defense_specific/LFC_good_bad.png)
+:::
+
+## [Early time intervals experience more ToD]{.r-fit-text}
+
+![](figures/defense_specific/tod_numbers.svg)
+
+## What processes are being prioritized?
+![](figures/ORA_plot.svg)
+
+## [ToD candidates as Transcription factors]{.r-fit-text}
+
+```{mermaid}
+flowchart LR
+
+%% Classes
+classDef box fill:#eef4ff,stroke:#7aa0ff,stroke-width:2px,color:#1a1f36
+classDef box2 fill:#f1e8ff,stroke:#9b59b6,stroke-width:2px,color:#1a1f36
+classDef box3 fill:#fff1e6,stroke:#e67e22,stroke-width:2px,color:#1a1f36
+classDef box4 fill:#e9fbf0,stroke:#27ae60,stroke-width:2px,color:#1a1f36
+classDef pill fill:#cfdcff,stroke:#7aa0ff,color:#1a1f36
+classDef pill2 fill:#d8c6ff,stroke:#9b59b6,color:#1a1f36
+classDef pill3 fill:#ffd9bf,stroke:#e67e22,color:#1a1f36
+classDef pill4 fill:#c7f5db,stroke:#27ae60,color:#1a1f36
+
+subgraph A [Identify Translation-on-Demand - ToD Genes]
+  direction TB
+  A1("Yang time-course: keep genes where Protein LFC >> RNA LFC\nRNA in stable window\n-2 <= RNA LFC <= +2")
+  A2("438 ToD genes")
+end
+
+subgraph B [Isolate Transcription Factors]
+  direction TB
+  B1("Cross-check ToD list with AnimalTFDB v4\nTFs over-represented")
+  B2("46 TFs (10.5% of 438 ToD genes)\nFisher exact p = 0.021")
+end
+
+subgraph C [Infer TF Activity]
+  direction TB
+  C1("decoupleR (ULM)\nEvery TF-target link has sign\n+1 activator (targets up when TF active)\n-1 repressor (targets down when TF active)\nULM regresses target expression on signed weights\nActivator up OR repressor down => positive t-value\nOpposite => negative t-value")
+  C2("t-value = TF activity score -> heatmap")
+end
+
+subgraph D [Retain TFs with Mapped Targets]
+  direction TB
+  D1("TFs have curated regulatory networks in CollecTRI")
+  D2("22 TFs -> taken forward")
+end
+
+A -->|Filter for TFs| B
+B -->|Estimate activity| C
+C -->|Keep TFs with mapped targets| D
+
+class A1 box
+class A2 pill
+class B1 box2
+class B2 pill2
+class C1 box3
+class C2 pill3
+class D1 box4
+class D2 pill4
+
+```
+
+
+## [ToD candidates as Transcription factors]{.r-fit-text}
+::::: columns
+::::{.column width="60%"}
+![](figures/defense_specific/TF_heatmap.svg)
+::::
+::::{.column width="40%"}
+::::
+:::::
+
+
+## [How are these genes selectively post-transcriptionally upregulated?]{.r-fit-text}
+![](figures/motif_plot.svg)
+
+
+## The picture so far...
+
+::: callout-tip
+## Insights
+ - ToD is a detectable post-trascriptional regulatory mechanism during early develompent
+ - ToD aids correct transition from the naive to the formative state
+ - The biological implications from the data agrees with the proposed purpose of ToD
+:::
+
+::: {.fragment}
+::: callout-important
+## Signal strenght
+We do not have strong biological signals… e.g. in the enrichments, motif enrichmets etc.
+:::
+:::
+
+## Other potential problems
+::: {.fragment}
+::: callout-caution
+## Noise in ToD calling
+We should test out other ToD calling methods.
+:::
+:::
+
+::: {.fragment}
+::: callout-caution
+## Medium Change Stress confounding
+Some LFC-ratios might be confounded by cellular stress during the medium change. Rapid development and stress are sometimes hard to differentiate.
+:::
+:::
+
+::: {.fragment}
+::: callout-caution
+## Reproducability
+ToD candidates in other datasets are hard to replicate.
+:::
+:::
+
+## Whats up next?
+- Polysome profiling
+- Human dataset ToD calling 
+- Other data normalization methods (GPR, LOESS) → better suitable for temporal data with small replicate number 
+
+
+## Thank you so much, Beyer Crew! {.smaller background-color="white"}
+
+::::: columns
+
+::::{.column width="50%" .smaller}
+
+Supervisor: 
+
+special thanks to **Luke Brandwood**
+
+![](figures/defense_specific/luke_backpack.png){width=60%}
+
+Reviewers: 
+
+a huge thanks goes to...
+
+- **Prof. Dr. Andreas Beyer** 
+- **Prof. Dr. Achim Tresch**
+
+::::
+
+::::{.column width="50%"}
+
+::: {layout="[[1],[1,1]]"}
+![](figures/defense_specific/Beyer_lab.jpg){width=90%} 
+
+![](Uni_Köln_Logo.png){width=50%} 
+
+![](CECAD_logo.jpg){width=50%}
+:::
+
+::::
+
+:::::
+
+## Datasets for Translation on Demand {.smaller}
+
+| Dataset                          | Temporal resolution       | Replicates Transcriptomics | Replicates Proteomics | Organism |
+|:---------------------------------|:--------------------------|:--------------------------|:----------------------|:---------|
+| <span style="color: red;">Yang Data</span> | 0, 1, 6, 12, 24, 48, 72   | 2                          | 4                     | Mice     |
+| Leeb TC Data (Time Course)       | 0, 4, 8, 12, 24, 32       | 1                          | 4                     | Mice     |
+| Leeb (MC) Data Medium Change     | 0, 4, 8                   | 3                          | 4                     | Mice     |
+| Leeb Human TC                    | 0, 1, 12, 48, 72, 96      | 2                          | 4                     | Human    |
+
+- In the making: Polysome Profiling
+
+## Testing out data smoothing methods
+
+![](figures/defense_specific/comparison_of_smoothers.png)
+
+## ToD candidates in other datasets
+![](figures/early_tods_venn_diagram.svg)
