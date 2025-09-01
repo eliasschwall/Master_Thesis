@@ -375,7 +375,7 @@ Cell surface, substrate junctions, Golgi lumen
 ## [2] Isolate Transcription Factors
 
 - Cross-check ToD list with
-- AnimalTFDB v4
+- **AnimalTFDB v4**
 - TFs are significantly over-represented
 
 <p style="text-align:center; color:#FE7E14; font-weight:bold;">46 TFs (10.5% of 438 ToD genes) → p = 0.021</p>
@@ -386,8 +386,8 @@ Cell surface, substrate junctions, Golgi lumen
 ::: callout-caution
 ## [3] Retain TFs with Mapped Targets
 
-- TEs have curated regulatory networks in
-- CollecTRI
+- TFs have curated regulatory networks in
+- **CollecTRI**
 
 <p style="text-align:center; color:#FE7E14; font-weight:bold;">22 TFs → taken forward</p>
 :::
@@ -397,9 +397,9 @@ Cell surface, substrate junctions, Golgi lumen
 ::: callout-tip
 ## [4] Infer TF Activity
 
-* decoupleR (ULM) - Every TF-target link has a sign:
-  + +1 = activator (targets T when TF active)
-  + -1 = repressor (targets / when TF active)
+* **decoupleR (ULM)** - Every TF-target link has a sign:
+  + +1 = activator (targets ↑ when TF active)
+  + -1 = repressor (targets ↓ when TF active)
 * ULM regresses target-gene expression on signed weights:
   + Activator targets up OR repressor targets down → positive t-value
   + Opposite expectations → negative t-value
@@ -422,7 +422,7 @@ Cell surface, substrate junctions, Golgi lumen
 
 :::{.fragment .incremental}
 ::: callout-note
-## Known important genes during the transition are ToD candidates
+## Known important genes during early development are ToD candidates
 
 - **Hsf2**: Heat Shock Transcription Factor → protects against cellular stress
 - **Foxd3**: Shuts naïve enhancers → kick-starts exit from naïve state
@@ -440,7 +440,7 @@ Cell surface, substrate junctions, Golgi lumen
 :::{.callout-note .smaler}
 ## [1] UTR Collection
 
-Take the 3'-UTR sequences of all Translation-on-Demand (ToD) candidate genes for each time-window.
+Take the 3'-UTR sequences of all ToD candidate genes for each time-window.
 
 <p style="text-align:center; color:#0B6FFD; font-weight:bold;">Target gene UTR sequences</p>
 :::
@@ -450,9 +450,9 @@ Take the 3'-UTR sequences of all Translation-on-Demand (ToD) candidate genes for
 ::: callout-note
 ## [2] Background
 
-Use the 3'-UTRs of all other genes detected in both transcriptome AND proteome as the control universe.
+Use the 3'-UTRs of all genes detected in both transcriptome & proteome as the control universe.
 
-<p style="text-align:center; color:#FE7E14; font-weight:bold;">Control UTR background</p>
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">Control UTR background</p>
 :::
 :::
 
@@ -460,22 +460,11 @@ Use the 3'-UTRs of all other genes detected in both transcriptome AND proteome a
 ::: callout-caution
 ## [3] Motif Scan (AME, MEME-suite)
 
-Run AME with the CISBP-RNA motif library
+Run AME with the CISBP-RNA motif library.
 
 - Parameters: Fisher's exact test, adj-p cut-off < 0.05
 
 <p style="text-align:center; color:#FE7E14; font-weight:bold;">Enriched RBP motifs</p>
-:::
-:::
-
-:::{.fragment .smaller}
-::: callout-tip
-## [4] Check Proteins
-
-Cross-checked enriched RBPs in the Yang proteome to see whether they themselves change over
-  
-
-<p style="text-align:center; color:#1B8754; font-weight:bold;">RBP temporal dynamics</p>
 :::
 :::
 
@@ -508,19 +497,21 @@ Cross-checked enriched RBPs in the Yang proteome to see whether they themselves 
 
 ## The picture so far...
 
+:::{.incremental}
 ::: callout-tip
 ## Insights
  - ToD is a detectable post-trascriptional regulatory mechanism during early develompent
  - ToD aids correct transition from the naive to the formative state
  - The biological implications from the data agrees with the proposed purpose of ToD
 :::
+:::
 
-::: {.fragment}
+::: {.fragment .incremental}
 ::: callout-important
 ## Limitations
-- We do not have strong biological signals… e.g. in the enrichments, motif enrichmets etc.
-- Methods need to be adjusted for other datasets (scaling issues)
-- Medium Change confounding stress
+- Medium Change stress could be a confounding factor 
+- Different media in different datasets are hard to compare 
+- Different datasets have different ranges (scaling) so filtering criteria have to be adjusted
 :::
 :::
 
@@ -534,7 +525,7 @@ Cross-checked enriched RBPs in the Yang proteome to see whether they themselves 
 - Human dataset ToD calling
 :::
 :::{.fragment fragment-index=3}
-- Other data normalization methods (GPR, LOESS) → better suitable for temporal data with small replicate number
+- Trying data smoothing methods (GPR, LOESS) → better suitable for temporal data with a small replicate number
 :::
 
 
@@ -555,10 +546,6 @@ Cross-checked enriched RBPs in the Yang proteome to see whether they themselves 
 :::
 ::::
 :::::
-
-
-
-
 
 ## Thank you so much, Beyer Crew! {.smaller background-color="white"}
 

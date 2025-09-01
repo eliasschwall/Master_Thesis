@@ -755,7 +755,7 @@ Growth-factor co-receptors &amp; signaling modulators
 <div class="callout-content">
 <ul>
 <li>Cross-check ToD list with</li>
-<li>AnimalTFDB v4</li>
+<li><strong>AnimalTFDB v4</strong></li>
 <li>TFs are significantly over-represented</li>
 </ul>
 <p style="text-align:center; color:#FE7E14; font-weight:bold;">
@@ -778,8 +778,8 @@ Growth-factor co-receptors &amp; signaling modulators
 </div>
 <div class="callout-content">
 <ul>
-<li>TEs have curated regulatory networks in</li>
-<li>CollecTRI</li>
+<li>TFs have curated regulatory networks in</li>
+<li><strong>CollecTRI</strong></li>
 </ul>
 <p style="text-align:center; color:#FE7E14; font-weight:bold;">
 22 TFs → taken forward
@@ -799,10 +799,10 @@ Growth-factor co-receptors &amp; signaling modulators
 </div>
 <div class="callout-content">
 <ul>
-<li>decoupleR (ULM) - Every TF-target link has a sign:
+<li><strong>decoupleR (ULM)</strong> - Every TF-target link has a sign:
 <ul>
-<li>+1 = activator (targets T when TF active)</li>
-<li>-1 = repressor (targets / when TF active)</li>
+<li>+1 = activator (targets ↑ when TF active)</li>
+<li>-1 = repressor (targets ↓ when TF active)</li>
 </ul></li>
 <li>ULM regresses target-gene expression on signed weights:
 <ul>
@@ -865,7 +865,7 @@ t-value = TF activity score → heatmap
 <p><strong>[1] UTR Collection</strong></p>
 </div>
 <div class="callout-content">
-<p>Take the 3’-UTR sequences of all Translation-on-Demand (ToD) candidate genes for each time-window.</p>
+<p>Take the 3’-UTR sequences of all ToD candidate genes for each time-window.</p>
 <p style="text-align:center; color:#0B6FFD; font-weight:bold;">
 Target gene UTR sequences
 </p>
@@ -884,8 +884,8 @@ Target gene UTR sequences
 <p><strong>[2] Background</strong></p>
 </div>
 <div class="callout-content">
-<p>Use the 3’-UTRs of all other genes detected in both transcriptome AND proteome as the control universe.</p>
-<p style="text-align:center; color:#FE7E14; font-weight:bold;">
+<p>Use the 3’-UTRs of all genes detected in both transcriptome &amp; proteome as the control universe.</p>
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">
 Control UTR background
 </p>
 </div>
@@ -904,30 +904,12 @@ Control UTR background
 <p><strong>[3] Motif Scan (AME, MEME-suite)</strong></p>
 </div>
 <div class="callout-content">
-<p>Run AME with the CISBP-RNA motif library</p>
+<p>Run AME with the CISBP-RNA motif library.</p>
 <ul>
 <li>Parameters: Fisher’s exact test, adj-p cut-off &lt; 0.05</li>
 </ul>
 <p style="text-align:center; color:#FE7E14; font-weight:bold;">
 Enriched RBP motifs
-</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>[4] Check Proteins</strong></p>
-</div>
-<div class="callout-content">
-<p>Cross-checked enriched RBPs in the Yang proteome to see whether they themselves change over</p>
-<p style="text-align:center; color:#1B8754; font-weight:bold;">
-RBP temporal dynamics
 </p>
 </div>
 </div>
@@ -965,6 +947,7 @@ RBP temporal dynamics
 </section>
 <section id="the-picture-so-far" class="slide level2">
 <h2>The picture so far…</h2>
+<div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -975,10 +958,11 @@ RBP temporal dynamics
 </div>
 <div class="callout-content">
 <ul>
-<li>ToD is a detectable post-trascriptional regulatory mechanism during early develompent</li>
-<li>ToD aids correct transition from the naive to the formative state</li>
-<li>The biological implications from the data agrees with the proposed purpose of ToD</li>
+<li class="fragment">ToD is a detectable post-trascriptional regulatory mechanism during early develompent</li>
+<li class="fragment">ToD aids correct transition from the naive to the formative state</li>
+<li class="fragment">The biological implications from the data agrees with the proposed purpose of ToD</li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -993,9 +977,9 @@ RBP temporal dynamics
 </div>
 <div class="callout-content">
 <ul>
-<li>We do not have strong biological signals… e.g.&nbsp;in the enrichments, motif enrichmets etc.</li>
-<li>Methods need to be adjusted for other datasets (scaling issues)</li>
-<li>Medium Change confounding stress</li>
+<li class="fragment">Medium Change stress could be a confounding factor</li>
+<li class="fragment">Different media in different datasets are hard to compare</li>
+<li class="fragment">Different datasets have different ranges (scaling) so filtering criteria have to be adjusted</li>
 </ul>
 </div>
 </div>
@@ -1016,7 +1000,7 @@ RBP temporal dynamics
 </div>
 <div class="fragment" data-fragment-index="3">
 <ul>
-<li>Other data normalization methods (GPR, LOESS) → better suitable for temporal data with small replicate number</li>
+<li>Trying data smoothing methods (GPR, LOESS) → better suitable for temporal data with a small replicate number</li>
 </ul>
 </div>
 <div class="columns">
