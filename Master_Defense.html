@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Elias Schwall">
-  <meta name="dcterms.date" content="2025-08-31">
+  <meta name="dcterms.date" content="2025-09-01">
   <title>Translation on Demand as a post-transcriptional regulation mechanism of embryonic stem cell differentiation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -188,9 +188,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="Master_Defense_files/libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="Master_Defense_files/libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="Master_Defense_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <style>
   #title-slide .title {
     font-size: 1.5em;
@@ -213,7 +210,7 @@ Elias Schwall
 </div>
 </div>
 
-  <p class="date">2025-08-31</p>
+  <p class="date">2025-09-01</p>
 </section>
 <section id="what-is-translation-on-demand-tod" class="slide level2 smaller">
 <h2>What is Translation on Demand (ToD)?</h2>
@@ -523,69 +520,114 @@ Elias Schwall
 <h2><span class="r-fit-text">Early time intervals experience more ToD</span></h2>
 
 <img data-src="figures/defense_specific/tod_numbers.svg" class="r-stretch"></section>
-<section id="what-processes-are-being-prioritized" class="slide level2">
-<h2>What processes are being prioritized?</h2>
+<section id="what-processes-are-subject-to-tod-1" class="slide level2">
+<h2>What processes are subject to ToD?</h2>
 
 <img data-src="figures/ORA_plot.svg" class="r-stretch"></section>
-<section id="tod-candidates-as-transcription-factors" class="slide level2">
+<section id="tod-candidates-as-transcription-factors" class="slide level2 smaller">
 <h2><span class="r-fit-text">ToD candidates as Transcription factors</span></h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
 
-%% Classes
-classDef box fill:#eef4ff,stroke:#7aa0ff,stroke-width:2px,color:#1a1f36
-classDef box2 fill:#f1e8ff,stroke:#9b59b6,stroke-width:2px,color:#1a1f36
-classDef box3 fill:#fff1e6,stroke:#e67e22,stroke-width:2px,color:#1a1f36
-classDef box4 fill:#e9fbf0,stroke:#27ae60,stroke-width:2px,color:#1a1f36
-classDef pill fill:#cfdcff,stroke:#7aa0ff,color:#1a1f36
-classDef pill2 fill:#d8c6ff,stroke:#9b59b6,color:#1a1f36
-classDef pill3 fill:#ffd9bf,stroke:#e67e22,color:#1a1f36
-classDef pill4 fill:#c7f5db,stroke:#27ae60,color:#1a1f36
-
-subgraph A [Identify Translation-on-Demand - ToD Genes]
-  direction TB
-  A1("Yang time-course: keep genes where Protein LFC &gt;&gt; RNA LFC\nRNA in stable window\n-2 &lt;= RNA LFC &lt;= +2")
-  A2("438 ToD genes")
-end
-
-subgraph B [Isolate Transcription Factors]
-  direction TB
-  B1("Cross-check ToD list with AnimalTFDB v4\nTFs over-represented")
-  B2("46 TFs (10.5% of 438 ToD genes)\nFisher exact p = 0.021")
-end
-
-subgraph C [Infer TF Activity]
-  direction TB
-  C1("decoupleR (ULM)\nEvery TF-target link has sign\n+1 activator (targets up when TF active)\n-1 repressor (targets down when TF active)\nULM regresses target expression on signed weights\nActivator up OR repressor down =&gt; positive t-value\nOpposite =&gt; negative t-value")
-  C2("t-value = TF activity score -&gt; heatmap")
-end
-
-subgraph D [Retain TFs with Mapped Targets]
-  direction TB
-  D1("TFs have curated regulatory networks in CollecTRI")
-  D2("22 TFs -&gt; taken forward")
-end
-
-A --&gt;|Filter for TFs| B
-B --&gt;|Estimate activity| C
-C --&gt;|Keep TFs with mapped targets| D
-
-class A1 box
-class A2 pill
-class B1 box2
-class B2 pill2
-class C1 box3
-class C2 pill3
-class D1 box4
-class D2 pill4
-
-</pre>
 </div>
-<p></p></figure><p></p>
+<div class="quarto-layout-panel" data-layout-nrow="2">
+<div class="quarto-layout-row">
+<div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="smaler">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[1] Identify Translation-on-Demand Genes</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Yang time-course: keep genes whose</li>
+<li>Protein LFC » RNA LFC</li>
+<li>RNA stays in “stable” window (-2 ≤ RNA LFC ≤ 2)</li>
+</ul>
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">
+438 ToD genes
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[2] Isolate Transcription Factors</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Cross-check ToD list with</li>
+<li>AnimalTFDB v4</li>
+<li>TFs are significantly over-represented</li>
+</ul>
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">
+46 TFs (10.5% of 438 ToD genes) → p = 0.021
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="fragment smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[3] Retain TFs with Mapped Targets</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>TEs have curated regulatory networks in</li>
+<li>CollecTRI</li>
+</ul>
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">
+22 TFs → taken forward
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[4] Infer TF Activity</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>decoupleR (ULM) - Every TF-target link has a sign:
+<ul>
+<li>+1 = activator (targets T when TF active)</li>
+<li>-1 = repressor (targets / when TF active)</li>
+</ul></li>
+<li>ULM regresses target-gene expression on signed weights:
+<ul>
+<li>Activator targets up OR repressor targets down → positive t-value</li>
+<li>Opposite expectations → negative t-value</li>
+</ul></li>
+</ul>
+<p style="text-align:center; color:#1B8754; font-weight:bold;">
+t-value = TF activity score → heatmap
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -596,13 +638,143 @@ class D2 pill4
 <div class="column" style="width:60%;">
 <p><img data-src="figures/defense_specific/TF_heatmap.svg"></p>
 </div><div class="column" style="width:40%;">
-
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Known important genes during the transition are ToD candidates</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment"><strong>Hsf2</strong>: Heat Shock Transcription Factor → protects against cellular stress</li>
+<li class="fragment"><strong>Foxd3</strong>: Shuts naïve enhancers → kick-starts exit from naïve state</li>
+<li class="fragment"><strong>Klf10</strong>: Member of KLF family → tilts balance toward differentiation</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div></div>
 </section>
-<section id="how-are-these-genes-selectively-post-transcriptionally-upregulated" class="slide level2">
+<section id="how-are-these-genes-selectively-post-transcriptionally-upregulated" class="slide level2 smaller">
 <h2><span class="r-fit-text">How are these genes selectively post-transcriptionally upregulated?</span></h2>
+<div>
 
-<img data-src="figures/motif_plot.svg" class="r-stretch"></section>
+</div>
+<div class="quarto-layout-panel" data-layout-nrow="2">
+<div class="quarto-layout-row">
+<div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="smaler">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[1] UTR Collection</strong></p>
+</div>
+<div class="callout-content">
+<p>Take the 3’-UTR sequences of all Translation-on-Demand (ToD) candidate genes for each time-window.</p>
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">
+Target gene UTR sequences
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[2] Background</strong></p>
+</div>
+<div class="callout-content">
+<p>Use the 3’-UTRs of all other genes detected in both transcriptome AND proteome as the control universe.</p>
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">
+Control UTR background
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="fragment smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[3] Motif Scan (AME, MEME-suite)</strong></p>
+</div>
+<div class="callout-content">
+<p>Run AME with the CISBP-RNA motif library</p>
+<ul>
+<li>Parameters: Fisher’s exact test, adj-p cut-off &lt; 0.05</li>
+</ul>
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">
+Enriched RBP motifs
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment smaller quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>[4] Check Proteins</strong></p>
+</div>
+<div class="callout-content">
+<p>Cross-checked enriched RBPs in the Yang proteome to see whether they themselves change over</p>
+<p style="text-align:center; color:#1B8754; font-weight:bold;">
+RBP temporal dynamics
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="are-rbp-motifs-enriched-in-3-utrs-of-tod-candidates" class="slide level2 smaller">
+<h2><span class="r-fit-text">Are RBP motifs enriched in 3’ UTRs of ToD candidates?</span></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figures/defense_specific/motif_plot_3_prime.svg"></p>
+</div><div class="column" style="width:40%;">
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>RBPs important for early development</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment"><strong>Lin28</strong>: interacts within large <span style="color:#d32f2f; font-weight:600;">ribonucleoprotein complexes</span> to modulate translation of key <span style="color:#d32f2f; font-weight:600;">developmental mRNAs</span></li>
+<li class="fragment"><strong>Pcbp1-3</strong>: modulating <span style="color:#d32f2f; font-weight:600;">mRNA stability</span>, <span style="color:#d32f2f; font-weight:600;">alternative splicing</span> as well as translation regulation</li>
+<li class="fragment"><strong>Ptbp1</strong>: integrating <span style="color:#d32f2f; font-weight:600;">developmental cues</span> in translational regulation and shape post-transcriptional modification by regulating <span style="color:#d32f2f; font-weight:600;">alternative splicing</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
 <section id="the-picture-so-far" class="slide level2">
 <h2>The picture so far…</h2>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -686,13 +858,37 @@ class D2 pill4
 </div>
 </div>
 </section>
-<section id="whats-up-next" class="slide level2">
-<h2>Whats up next?</h2>
+<section id="next-steps" class="slide level2">
+<h2>Next steps?</h2>
+<div class="fragment" data-fragment-index="1">
 <ul>
 <li>Polysome profiling</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<ul>
 <li>Human dataset ToD calling</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
 <li>Other data normalization methods (GPR, LOESS) → better suitable for temporal data with small replicate number</li>
 </ul>
+</div>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="fragment" data-fragment-index="1">
+<p><img data-src="figures/defense_specific/Mono_poly.png" style="width:60.0%"></p>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="figures/defense_specific/human.jpg" style="width:60.0%"></p>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="fragment" data-fragment-index="3">
+<p><img data-src="figures/defense_specific/LR.png" style="width:60.0%"></p>
+</div>
+</div></div>
 </section>
 <section id="thank-you-so-much-beyer-crew" class="slide level2 smaller" data-background-color="white">
 <h2>Thank you so much, Beyer Crew!</h2>
@@ -789,8 +985,12 @@ class D2 pill4
 <section id="tod-candidates-in-other-datasets" class="slide level2">
 <h2>ToD candidates in other datasets</h2>
 
-
 <img data-src="figures/early_tods_venn_diagram.svg" class="r-stretch"></section>
+<section id="rbps" class="slide level2">
+<h2>RBPs</h2>
+
+
+<img data-src="figures/defense_specific/motif_plot.svg" class="r-stretch"></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="CECAD_logo.jpg" class="slide-logo"></p>

@@ -242,62 +242,66 @@ $$\text{logFC}_{\text{protein against 0h after ToD call}}\geq \text{logFC}_{\tex
 
 ![](figures/defense_specific/tod_numbers.svg)
 
-## What processes are being prioritized?
+## What processes are subject to ToD?
 ![](figures/ORA_plot.svg)
 
-## [ToD candidates as Transcription factors]{.r-fit-text}
+## [ToD candidates as Transcription factors]{.r-fit-text}{.smaller}
 
-```{mermaid}
-flowchart LR
+::: {layout-nrow=2}
 
-%% Classes
-classDef box fill:#eef4ff,stroke:#7aa0ff,stroke-width:2px,color:#1a1f36
-classDef box2 fill:#f1e8ff,stroke:#9b59b6,stroke-width:2px,color:#1a1f36
-classDef box3 fill:#fff1e6,stroke:#e67e22,stroke-width:2px,color:#1a1f36
-classDef box4 fill:#e9fbf0,stroke:#27ae60,stroke-width:2px,color:#1a1f36
-classDef pill fill:#cfdcff,stroke:#7aa0ff,color:#1a1f36
-classDef pill2 fill:#d8c6ff,stroke:#9b59b6,color:#1a1f36
-classDef pill3 fill:#ffd9bf,stroke:#e67e22,color:#1a1f36
-classDef pill4 fill:#c7f5db,stroke:#27ae60,color:#1a1f36
+:::{.fragment}
+:::{.callout-note .smaler}
+## [1] Identify Translation-on-Demand Genes
 
-subgraph A [Identify Translation-on-Demand - ToD Genes]
-  direction TB
-  A1("Yang time-course: keep genes where Protein LFC >> RNA LFC\nRNA in stable window\n-2 <= RNA LFC <= +2")
-  A2("438 ToD genes")
-end
+- Yang time-course: keep genes whose
+- Protein LFC » RNA LFC
+- RNA stays in "stable" window (-2 ≤ RNA LFC ≤ 2)
 
-subgraph B [Isolate Transcription Factors]
-  direction TB
-  B1("Cross-check ToD list with AnimalTFDB v4\nTFs over-represented")
-  B2("46 TFs (10.5% of 438 ToD genes)\nFisher exact p = 0.021")
-end
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">438 ToD genes</p>
+:::
+:::
 
-subgraph C [Infer TF Activity]
-  direction TB
-  C1("decoupleR (ULM)\nEvery TF-target link has sign\n+1 activator (targets up when TF active)\n-1 repressor (targets down when TF active)\nULM regresses target expression on signed weights\nActivator up OR repressor down => positive t-value\nOpposite => negative t-value")
-  C2("t-value = TF activity score -> heatmap")
-end
+:::{.fragment .smaller}
+::: callout-caution
+## [2] Isolate Transcription Factors
 
-subgraph D [Retain TFs with Mapped Targets]
-  direction TB
-  D1("TFs have curated regulatory networks in CollecTRI")
-  D2("22 TFs -> taken forward")
-end
+- Cross-check ToD list with
+- AnimalTFDB v4
+- TFs are significantly over-represented
 
-A -->|Filter for TFs| B
-B -->|Estimate activity| C
-C -->|Keep TFs with mapped targets| D
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">46 TFs (10.5% of 438 ToD genes) → p = 0.021</p>
+:::
+:::
 
-class A1 box
-class A2 pill
-class B1 box2
-class B2 pill2
-class C1 box3
-class C2 pill3
-class D1 box4
-class D2 pill4
+:::{.fragment .smaller}
+::: callout-caution
+## [3] Retain TFs with Mapped Targets
 
-```
+- TEs have curated regulatory networks in
+- CollecTRI
+
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">22 TFs → taken forward</p>
+:::
+:::
+
+:::{.fragment .smaller}
+::: callout-tip
+## [4] Infer TF Activity
+
+* decoupleR (ULM) - Every TF-target link has a sign:
+  + +1 = activator (targets T when TF active)
+  + -1 = repressor (targets / when TF active)
+* ULM regresses target-gene expression on signed weights:
+  + Activator targets up OR repressor targets down → positive t-value
+  + Opposite expectations → negative t-value
+  
+
+<p style="text-align:center; color:#1B8754; font-weight:bold;">t-value = TF activity score → heatmap</p>
+:::
+:::
+
+:::
+
 
 
 ## [ToD candidates as Transcription factors]{.r-fit-text}
@@ -306,12 +310,91 @@ class D2 pill4
 ![](figures/defense_specific/TF_heatmap.svg)
 ::::
 ::::{.column width="40%"}
+
+:::{.fragment .incremental}
+::: callout-note
+## Known important genes during the transition are ToD candidates
+
+- **Hsf2**: Heat Shock Transcription Factor → protects against cellular stress
+- **Foxd3**: Shuts naïve enhancers → kick-starts exit from naïve state
+- **Klf10**: Member of KLF family → tilts balance toward differentiation
+:::
+:::
+
 ::::
 :::::
 
+## [How are these genes selectively post-transcriptionally upregulated?]{.r-fit-text}{.smaller}
+::: {layout-nrow=2}
 
-## [How are these genes selectively post-transcriptionally upregulated?]{.r-fit-text}
-![](figures/motif_plot.svg)
+:::{.fragment}
+:::{.callout-note .smaler}
+## [1] UTR Collection
+
+Take the 3'-UTR sequences of all Translation-on-Demand (ToD) candidate genes for each time-window.
+
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">Target gene UTR sequences</p>
+:::
+:::
+
+:::{.fragment .smaller}
+::: callout-note
+## [2] Background
+
+Use the 3'-UTRs of all other genes detected in both transcriptome AND proteome as the control universe.
+
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">Control UTR background</p>
+:::
+:::
+
+:::{.fragment .smaller}
+::: callout-caution
+## [3] Motif Scan (AME, MEME-suite)
+
+Run AME with the CISBP-RNA motif library
+
+- Parameters: Fisher's exact test, adj-p cut-off < 0.05
+
+<p style="text-align:center; color:#FE7E14; font-weight:bold;">Enriched RBP motifs</p>
+:::
+:::
+
+:::{.fragment .smaller}
+::: callout-tip
+## [4] Check Proteins
+
+Cross-checked enriched RBPs in the Yang proteome to see whether they themselves change over
+  
+
+<p style="text-align:center; color:#1B8754; font-weight:bold;">RBP temporal dynamics</p>
+:::
+:::
+
+:::
+
+## [Are RBP motifs enriched in 3’ UTRs of ToD candidates?]{.r-fit-text}{.smaller}
+::::: columns
+::::{.column width="60%"}
+![](figures/defense_specific/motif_plot_3_prime.svg)
+::::
+::::{.column width="40%"}
+
+:::{.fragment .incremental}
+::: callout-note
+## RBPs important for early development
+
+-  **Lin28**: interacts within large <span style="color:#d32f2f; font-weight:600;">ribonucleoprotein complexes</span> to modulate translation of key <span style="color:#d32f2f; font-weight:600;">developmental mRNAs</span>
+-  **Pcbp1-3**: modulating <span style="color:#d32f2f; font-weight:600;">mRNA stability</span>, <span style="color:#d32f2f; font-weight:600;">alternative splicing</span> as well as translation regulation
+-  **Ptbp1**: integrating <span style="color:#d32f2f; font-weight:600;">developmental cues</span> in translational regulation and shape post-transcriptional modification by regulating <span style="color:#d32f2f; font-weight:600;">alternative splicing</span>
+:::
+:::
+
+
+
+
+::::
+:::::
+
 
 
 ## The picture so far...
@@ -352,10 +435,39 @@ ToD candidates in other datasets are hard to replicate.
 :::
 :::
 
-## Whats up next?
+## Next steps? 
+
+:::{.fragment fragment-index=1}
 - Polysome profiling
-- Human dataset ToD calling 
-- Other data normalization methods (GPR, LOESS) → better suitable for temporal data with small replicate number 
+:::
+:::{.fragment fragment-index=2}
+- Human dataset ToD calling
+:::
+:::{.fragment fragment-index=3}
+- Other data normalization methods (GPR, LOESS) → better suitable for temporal data with small replicate number
+:::
+
+
+::::: columns
+::::{.column width="33%"}
+:::{.fragment fragment-index=1}
+![](figures/defense_specific/Mono_poly.png){width="60%"}
+:::
+::::
+::::{.column width="33%"}
+:::{.fragment fragment-index=2}
+![](figures/defense_specific/human.jpg){width="60%"}
+:::
+::::
+::::{.column width="33%"}
+:::{.fragment fragment-index=3}
+![](figures/defense_specific/LR.png){width="60%"}
+:::
+::::
+:::::
+
+
+
 
 
 ## Thank you so much, Beyer Crew! {.smaller background-color="white"}
@@ -410,3 +522,6 @@ a huge thanks goes to...
 
 ## ToD candidates in other datasets
 ![](figures/early_tods_venn_diagram.svg)
+
+## RBPs
+![](figures/defense_specific/motif_plot.svg)
