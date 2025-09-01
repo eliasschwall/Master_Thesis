@@ -239,18 +239,127 @@ $$\text{logFC}_{\text{protein against 0h after ToD call}}\geq \text{logFC}_{\tex
 :::
 
 ## [Early time intervals experience more ToD]{.r-fit-text}
-
 ![](figures/defense_specific/tod_numbers.svg)
 
-## What processes are subject to ToD?
-![](figures/ORA_plot.svg)
+## Early ToD candidates at a glance
+::: {layout-nrow=2}
+
+:::{.fragment}
+:::{.callout-note .smaler}
+## Vesicle budding, endo-/exocytosis and membrane trafficking
+
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">Agap1, Dnajc14, Rab27a, Vti1a, Napb</p>
+:::
+:::
+
+:::{.fragment .smaller}
+::: callout-note
+## Cytoskeletal re-organisation, centrosome & centriole functions
+
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">Cdc42bpa, Cep95, Plekhh1, Stil</p>
+:::
+:::
+
+:::{.fragment .smaller}
+::: callout-important
+## Post-transcriptional control (splicing, RNA stability)
+
+<p style="text-align:center; color:#DD3545; font-weight:bold;">Celf2, Rex2 (REXO2), Rsrp1</p>
+:::
+:::
+
+:::{.fragment .smaller}
+::: callout-tip
+## Signal-integration hubs (Wnt/ß-catenin, Notch, small-GTPase & G-protein regulation)
+
+<p style="text-align:center; color:#1B8754; font-weight:bold;">Axin1, Csnk1g2, Jag1, Rap2c, Rgs19</p>
+:::
+:::
+
+:::
+
+## [ToD candidates are over-represented in key transition processes]{.r-fit-text}
+::::: columns
+::::{.column width="60%"}
+![](figures/defense_specific/ORA_sig.png)
+::::
+::::{.column width="40%"}
+:::{.fragment}
+:::{.callout-important}
+## Signaling
+
+- **TNFA**: Inflammatory/apoptotic remodeling
+- **TGF-ß**: Proliferation, migration, tissue specification
+
+<p style="text-align:center; color:#DD3545; font-weight:bold;">Exit from naïve state → lineage priming </p>
+:::
+:::
+::::
+:::::
+
+## [ToD candidates are over-represented in key transition processes]{.r-fit-text}
+::::: columns
+::::{.column width="60%"}
+![](figures/defense_specific/ORA_dev.png)
+::::
+::::{.column width="40%"}
+:::{.fragment}
+::: callout-note
+## Development
+
+Tube morphogenesis, vasculature development, epithelial cell processes, skeletal development
+
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">Tissue programme priming</p>
+:::
+:::
+::::
+:::::
+
+## [ToD candidates are over-represented in key transition processes]{.r-fit-text}
+::::: columns
+::::{.column width="60%"}
+![](figures/defense_specific/ORA_cell.png)
+::::
+::::{.column width="40%"}
+:::{.fragment}
+::: callout-note
+## Cellular Machinery
+
+Cell surface, substrate junctions, Golgi lumen
+
+<p style="text-align:center; color:#0B6FFD; font-weight:bold;">Enhanced protein trafficking</p>
+:::
+:::
+::::
+:::::
+
+## [ToD candidates are over-represented in key transition processes]{.r-fit-text}{.smaller}
+::::: columns
+::::{.column width="60%"}
+![](figures/defense_specific/ORA_mat.png)
+::::
+::::{.column width="40%"}
+:::{.fragment}
+::: callout-tip
+## Matrix & GAGs (Glycosaminoglycans)
+
+- **Cell-surface proteoglycans**: Co-receptors & morphogen reservoirs
+- **Heparan-sulfate**: Required for FGF2-ERK & BMP4 → pluripotency exit
+- **Chondroitin-sulfate**: E-cadherin binding → cell-cell adhesion
+- **Sulfation patterns**: Fine-tune Wnt, BMP, Hedgehog, TNF-a gradients
+
+<p style="text-align:center; color:#1B8754; font-weight:bold;">Growth-factor co-receptors & signaling modulators</p>
+:::
+:::
+::::
+:::::
 
 ## [ToD candidates as Transcription factors]{.r-fit-text}{.smaller}
 
 ::: {layout-nrow=2}
 
 :::{.fragment}
-:::{.callout-note .smaler}
+:::{.callout-note}
 ## [1] Identify Translation-on-Demand Genes
 
 - Yang time-course: keep genes whose
@@ -408,32 +517,13 @@ Cross-checked enriched RBPs in the Yang proteome to see whether they themselves 
 
 ::: {.fragment}
 ::: callout-important
-## Signal strenght
-We do not have strong biological signals… e.g. in the enrichments, motif enrichmets etc.
+## Limitations
+- We do not have strong biological signals… e.g. in the enrichments, motif enrichmets etc.
+- Methods need to be adjusted for other datasets (scaling issues)
+- Medium Change confounding stress
 :::
 :::
 
-## Other potential problems
-::: {.fragment}
-::: callout-caution
-## Noise in ToD calling
-We should test out other ToD calling methods.
-:::
-:::
-
-::: {.fragment}
-::: callout-caution
-## Medium Change Stress confounding
-Some LFC-ratios might be confounded by cellular stress during the medium change. Rapid development and stress are sometimes hard to differentiate.
-:::
-:::
-
-::: {.fragment}
-::: callout-caution
-## Reproducability
-ToD candidates in other datasets are hard to replicate.
-:::
-:::
 
 ## Next steps? 
 
@@ -523,5 +613,14 @@ a huge thanks goes to...
 ## ToD candidates in other datasets
 ![](figures/early_tods_venn_diagram.svg)
 
-## RBPs
+## What processes are subject to ToD?
+![](figures/ORA_plot.svg)
+
+---
+
+![](figures/sub_figures/GO_Reactome_Terms_subfig.svg)
+
+
+---
+
 ![](figures/defense_specific/motif_plot.svg)
